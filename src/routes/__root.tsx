@@ -11,6 +11,10 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { Layout } from "@/components/layout";
+import { CompararProvider } from "@/context/comparar";
+import { ModalPesquisaOpiniao } from "@/components/modal-pesquisa-opiniao";
+
 
 function NotFoundComponent() {
   return (
