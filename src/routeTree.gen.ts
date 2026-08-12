@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CandidatosRouteImport } from './routes/candidatos'
 import { Route as CompararRouteImport } from './routes/comparar'
+import { Route as PesquisasRouteImport } from './routes/pesquisas'
 import { Route as CandidatoSlugRouteImport } from './routes/candidato.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -29,6 +30,11 @@ const CompararRoute = CompararRouteImport.update({
   path: '/comparar',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PesquisasRoute = PesquisasRouteImport.update({
+  id: '/pesquisas',
+  path: '/pesquisas',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CandidatoSlugRoute = CandidatoSlugRouteImport.update({
   id: '/candidato/$slug',
   path: '/candidato/$slug',
@@ -39,12 +45,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/candidatos': typeof CandidatosRoute
   '/comparar': typeof CompararRoute
+  '/pesquisas': typeof PesquisasRoute
   '/candidato/$slug': typeof CandidatoSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/candidatos': typeof CandidatosRoute
   '/comparar': typeof CompararRoute
+  '/pesquisas': typeof PesquisasRoute
   '/candidato/$slug': typeof CandidatoSlugRoute
 }
 export interface FileRoutesById {
@@ -52,20 +60,29 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/candidatos': typeof CandidatosRoute
   '/comparar': typeof CompararRoute
+  '/pesquisas': typeof PesquisasRoute
   '/candidato/$slug': typeof CandidatoSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/candidatos' | '/comparar' | '/candidato/$slug'
+  fullPaths:
+    '/' | '/candidatos' | '/comparar' | '/pesquisas' | '/candidato/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/candidatos' | '/comparar' | '/candidato/$slug'
-  id: '__root__' | '/' | '/candidatos' | '/comparar' | '/candidato/$slug'
+  to: '/' | '/candidatos' | '/comparar' | '/pesquisas' | '/candidato/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/candidatos'
+    | '/comparar'
+    | '/pesquisas'
+    | '/candidato/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CandidatosRoute: typeof CandidatosRoute
   CompararRoute: typeof CompararRoute
+  PesquisasRoute: typeof PesquisasRoute
   CandidatoSlugRoute: typeof CandidatoSlugRoute
 }
 
@@ -92,6 +109,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CompararRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pesquisas': {
+      id: '/pesquisas'
+      path: '/pesquisas'
+      fullPath: '/pesquisas'
+      preLoaderRoute: typeof PesquisasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/candidato/$slug': {
       id: '/candidato/$slug'
       path: '/candidato/$slug'
@@ -106,6 +130,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CandidatosRoute: CandidatosRoute,
   CompararRoute: CompararRoute,
+  PesquisasRoute: PesquisasRoute,
   CandidatoSlugRoute: CandidatoSlugRoute,
 }
 export const routeTree = rootRouteImport
