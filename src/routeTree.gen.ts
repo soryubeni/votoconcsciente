@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CandidatosRouteImport } from './routes/candidatos'
+import { Route as CompararRouteImport } from './routes/comparar'
+import { Route as EntendaRouteImport } from './routes/entenda'
+import { Route as MetodologiaRouteImport } from './routes/metodologia'
+import { Route as PesquisasRouteImport } from './routes/pesquisas'
+import { Route as CandidatoSlugRouteImport } from './routes/candidato.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CandidatosRoute = CandidatosRouteImport.update({
+  id: '/candidatos',
+  path: '/candidatos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompararRoute = CompararRouteImport.update({
+  id: '/comparar',
+  path: '/comparar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EntendaRoute = EntendaRouteImport.update({
+  id: '/entenda',
+  path: '/entenda',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MetodologiaRoute = MetodologiaRouteImport.update({
+  id: '/metodologia',
+  path: '/metodologia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PesquisasRoute = PesquisasRouteImport.update({
+  id: '/pesquisas',
+  path: '/pesquisas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CandidatoSlugRoute = CandidatoSlugRouteImport.update({
+  id: '/candidato/$slug',
+  path: '/candidato/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/candidatos': typeof CandidatosRoute
+  '/comparar': typeof CompararRoute
+  '/entenda': typeof EntendaRoute
+  '/metodologia': typeof MetodologiaRoute
+  '/pesquisas': typeof PesquisasRoute
+  '/candidato/$slug': typeof CandidatoSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/candidatos': typeof CandidatosRoute
+  '/comparar': typeof CompararRoute
+  '/entenda': typeof EntendaRoute
+  '/metodologia': typeof MetodologiaRoute
+  '/pesquisas': typeof PesquisasRoute
+  '/candidato/$slug': typeof CandidatoSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/candidatos': typeof CandidatosRoute
+  '/comparar': typeof CompararRoute
+  '/entenda': typeof EntendaRoute
+  '/metodologia': typeof MetodologiaRoute
+  '/pesquisas': typeof PesquisasRoute
+  '/candidato/$slug': typeof CandidatoSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/candidatos'
+    | '/comparar'
+    | '/entenda'
+    | '/metodologia'
+    | '/pesquisas'
+    | '/candidato/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/candidatos'
+    | '/comparar'
+    | '/entenda'
+    | '/metodologia'
+    | '/pesquisas'
+    | '/candidato/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/candidatos'
+    | '/comparar'
+    | '/entenda'
+    | '/metodologia'
+    | '/pesquisas'
+    | '/candidato/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CandidatosRoute: typeof CandidatosRoute
+  CompararRoute: typeof CompararRoute
+  EntendaRoute: typeof EntendaRoute
+  MetodologiaRoute: typeof MetodologiaRoute
+  PesquisasRoute: typeof PesquisasRoute
+  CandidatoSlugRoute: typeof CandidatoSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/candidatos': {
+      id: '/candidatos'
+      path: '/candidatos'
+      fullPath: '/candidatos'
+      preLoaderRoute: typeof CandidatosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/comparar': {
+      id: '/comparar'
+      path: '/comparar'
+      fullPath: '/comparar'
+      preLoaderRoute: typeof CompararRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/entenda': {
+      id: '/entenda'
+      path: '/entenda'
+      fullPath: '/entenda'
+      preLoaderRoute: typeof EntendaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/metodologia': {
+      id: '/metodologia'
+      path: '/metodologia'
+      fullPath: '/metodologia'
+      preLoaderRoute: typeof MetodologiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pesquisas': {
+      id: '/pesquisas'
+      path: '/pesquisas'
+      fullPath: '/pesquisas'
+      preLoaderRoute: typeof PesquisasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/candidato/$slug': {
+      id: '/candidato/$slug'
+      path: '/candidato/$slug'
+      fullPath: '/candidato/$slug'
+      preLoaderRoute: typeof CandidatoSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CandidatosRoute: CandidatosRoute,
+  CompararRoute: CompararRoute,
+  EntendaRoute: EntendaRoute,
+  MetodologiaRoute: MetodologiaRoute,
+  PesquisasRoute: PesquisasRoute,
+  CandidatoSlugRoute: CandidatoSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
