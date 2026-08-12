@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CandidatosRouteImport } from './routes/candidatos'
+import { Route as CompararRouteImport } from './routes/comparar'
 import { Route as CandidatoSlugRouteImport } from './routes/candidato.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -23,6 +24,11 @@ const CandidatosRoute = CandidatosRouteImport.update({
   path: '/candidatos',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CompararRoute = CompararRouteImport.update({
+  id: '/comparar',
+  path: '/comparar',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CandidatoSlugRoute = CandidatoSlugRouteImport.update({
   id: '/candidato/$slug',
   path: '/candidato/$slug',
@@ -32,30 +38,34 @@ const CandidatoSlugRoute = CandidatoSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/candidatos': typeof CandidatosRoute
+  '/comparar': typeof CompararRoute
   '/candidato/$slug': typeof CandidatoSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/candidatos': typeof CandidatosRoute
+  '/comparar': typeof CompararRoute
   '/candidato/$slug': typeof CandidatoSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/candidatos': typeof CandidatosRoute
+  '/comparar': typeof CompararRoute
   '/candidato/$slug': typeof CandidatoSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/candidatos' | '/candidato/$slug'
+  fullPaths: '/' | '/candidatos' | '/comparar' | '/candidato/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/candidatos' | '/candidato/$slug'
-  id: '__root__' | '/' | '/candidatos' | '/candidato/$slug'
+  to: '/' | '/candidatos' | '/comparar' | '/candidato/$slug'
+  id: '__root__' | '/' | '/candidatos' | '/comparar' | '/candidato/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CandidatosRoute: typeof CandidatosRoute
+  CompararRoute: typeof CompararRoute
   CandidatoSlugRoute: typeof CandidatoSlugRoute
 }
 
@@ -75,6 +85,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CandidatosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/comparar': {
+      id: '/comparar'
+      path: '/comparar'
+      fullPath: '/comparar'
+      preLoaderRoute: typeof CompararRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/candidato/$slug': {
       id: '/candidato/$slug'
       path: '/candidato/$slug'
@@ -88,6 +105,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CandidatosRoute: CandidatosRoute,
+  CompararRoute: CompararRoute,
   CandidatoSlugRoute: CandidatoSlugRoute,
 }
 export const routeTree = rootRouteImport
