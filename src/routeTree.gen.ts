@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as CandidatosRouteImport } from './routes/candidatos'
 import { Route as CompararRouteImport } from './routes/comparar'
 import { Route as EntendaRouteImport } from './routes/entenda'
+import { Route as MetodologiaRouteImport } from './routes/metodologia'
 import { Route as PesquisasRouteImport } from './routes/pesquisas'
 import { Route as CandidatoSlugRouteImport } from './routes/candidato.$slug'
 
@@ -36,6 +37,11 @@ const EntendaRoute = EntendaRouteImport.update({
   path: '/entenda',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MetodologiaRoute = MetodologiaRouteImport.update({
+  id: '/metodologia',
+  path: '/metodologia',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PesquisasRoute = PesquisasRouteImport.update({
   id: '/pesquisas',
   path: '/pesquisas',
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/candidatos': typeof CandidatosRoute
   '/comparar': typeof CompararRoute
   '/entenda': typeof EntendaRoute
+  '/metodologia': typeof MetodologiaRoute
   '/pesquisas': typeof PesquisasRoute
   '/candidato/$slug': typeof CandidatoSlugRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/candidatos': typeof CandidatosRoute
   '/comparar': typeof CompararRoute
   '/entenda': typeof EntendaRoute
+  '/metodologia': typeof MetodologiaRoute
   '/pesquisas': typeof PesquisasRoute
   '/candidato/$slug': typeof CandidatoSlugRoute
 }
@@ -69,6 +77,7 @@ export interface FileRoutesById {
   '/candidatos': typeof CandidatosRoute
   '/comparar': typeof CompararRoute
   '/entenda': typeof EntendaRoute
+  '/metodologia': typeof MetodologiaRoute
   '/pesquisas': typeof PesquisasRoute
   '/candidato/$slug': typeof CandidatoSlugRoute
 }
@@ -79,6 +88,7 @@ export interface FileRouteTypes {
     | '/candidatos'
     | '/comparar'
     | '/entenda'
+    | '/metodologia'
     | '/pesquisas'
     | '/candidato/$slug'
   fileRoutesByTo: FileRoutesByTo
@@ -87,6 +97,7 @@ export interface FileRouteTypes {
     | '/candidatos'
     | '/comparar'
     | '/entenda'
+    | '/metodologia'
     | '/pesquisas'
     | '/candidato/$slug'
   id:
@@ -95,6 +106,7 @@ export interface FileRouteTypes {
     | '/candidatos'
     | '/comparar'
     | '/entenda'
+    | '/metodologia'
     | '/pesquisas'
     | '/candidato/$slug'
   fileRoutesById: FileRoutesById
@@ -104,6 +116,7 @@ export interface RootRouteChildren {
   CandidatosRoute: typeof CandidatosRoute
   CompararRoute: typeof CompararRoute
   EntendaRoute: typeof EntendaRoute
+  MetodologiaRoute: typeof MetodologiaRoute
   PesquisasRoute: typeof PesquisasRoute
   CandidatoSlugRoute: typeof CandidatoSlugRoute
 }
@@ -138,6 +151,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EntendaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/metodologia': {
+      id: '/metodologia'
+      path: '/metodologia'
+      fullPath: '/metodologia'
+      preLoaderRoute: typeof MetodologiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/pesquisas': {
       id: '/pesquisas'
       path: '/pesquisas'
@@ -160,6 +180,7 @@ const rootRouteChildren: RootRouteChildren = {
   CandidatosRoute: CandidatosRoute,
   CompararRoute: CompararRoute,
   EntendaRoute: EntendaRoute,
+  MetodologiaRoute: MetodologiaRoute,
   PesquisasRoute: PesquisasRoute,
   CandidatoSlugRoute: CandidatoSlugRoute,
 }
